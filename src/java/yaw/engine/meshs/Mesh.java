@@ -1,10 +1,10 @@
 package yaw.engine.meshs;
 
+import org.joml.Matrix4f;
+import org.lwjgl.BufferUtils;
 import yaw.engine.items.ItemObject;
 import yaw.engine.shader.ShaderProgram;
 import yaw.engine.util.LoggerYAW;
-import org.joml.Matrix4f;
-import org.lwjgl.BufferUtils;
 
 import java.nio.FloatBuffer;
 import java.nio.IntBuffer;
@@ -24,12 +24,17 @@ import static org.lwjgl.opengl.GL30.*;
  *
  */
 public class Mesh {
-    private final List<Integer> vboIdList;
-    //reference to the VAO(wrapper)
-    private int mVaoId;
-    //VBO's ID
 
-    //VBO
+
+    // ========== Attributes ==========
+
+
+    private final List<Integer> vboIdList;
+    // Reference to the VAO (wrapper)
+    private int mVaoId;
+    // VBO's ID
+
+    // VBO
     private float[] mVertices;//mVertices
     private float[] mNormals;
     private int[] mIndices; //order into which  mVertices should be drawn by referring to their  position
@@ -37,8 +42,11 @@ public class Mesh {
     private int mWeight;  // the mWeight of an object in a group (e.g. a mass in a group planets)
     private Material mMaterial;
     private Map<String, String> mOptionalAttributes;
-    //strategy when we draw the elements
+    // Strategy when we draw the elements
     private MeshDrawingStrategy mDrawingStrategy;
+
+
+    // ========== Constructors ==========
 
     /**
      * Construct a Mesh with the specified mMaterial , mVertices, mNormals , mTextureCoordinate and mIndices.
@@ -55,9 +63,9 @@ public class Mesh {
     /**
      * Construct a Mesh with the specified mVertices, mNormals and mIndices.
      *
-     * @param pVertices   Vertex array
-     * @param pNormals    Normal vectors
-     * @param pIndices    Triangles
+     * @param pVertices Vertex array
+     * @param pNormals  Normal vectors
+     * @param pIndices  Triangles
      */
     public Mesh(float[] pVertices, float[] pNormals, int[] pIndices) {
         this(pVertices, null, pNormals, pIndices, pVertices.length);
@@ -82,6 +90,10 @@ public class Mesh {
         this.mOptionalAttributes = new HashMap<>();
         this.vboIdList = new ArrayList<>();
     }
+
+
+    // ========== Methods ==========
+
 
     /**
      * Initialize  vertex, mNormals, mIndices and mTextureCoordinate buffer
@@ -187,29 +199,6 @@ public class Mesh {
 
     }
 
-    /**
-     * Returns the value to which the specified @attributeName is mapped,
-     * or null if this map contains no mapping for the key.
-     *
-     * @param pAttributeName name of the attribute (most of the time it will be clojure keywords)
-     * @return the corresponding value if exist null otherwise
-     */
-    public Object getAttribute(String pAttributeName) {
-        return this.mOptionalAttributes.get(pAttributeName);
-    }
-
-    /**
-     * Copies all of the mappings from the specified map to this map (optional operation).
-     * The effect of this call is equivalent to that of calling put(k, v) on this map once for each mapping
-     * from key k to value v in the specified map.
-     * The behavior of this operation is undefined if the specified map is modified while the operation is in progress.
-     *
-     * @param pOptionalAttributes mappings to be stored in this map
-     */
-    public void putOptionalAttributes(Map<String, String> pOptionalAttributes) {
-        this.mOptionalAttributes.putAll(pOptionalAttributes);
-    }
-
     public void initRender() {
 
         Texture texture = mMaterial != null ? mMaterial.getTexture() : null;
@@ -244,16 +233,27 @@ public class Mesh {
         glBindTexture(GL_TEXTURE_2D, 0);
     }
 
+
+    // ========== Getters ==========
+
+
+    /**
+     * Returns the value to which the specified @attributeName is mapped,
+     * or null if this map contains no mapping for the key.
+     *
+     * @param pAttributeName name of the attribute (most of the time it will be clojure keywords)
+     * @return the corresponding value if exist null otherwise
+     */
+    public Object getAttribute(String pAttributeName) {
+        return this.mOptionalAttributes.get(pAttributeName);
+    }
+
     public float[] getVertices() {
         return mVertices;
     }
 
     public Material getMaterial() {
         return mMaterial;
-    }
-
-    public void setMaterial(Material pMaterial) {
-        this.mMaterial = pMaterial;
     }
 
     public float[] getNormals() {
@@ -268,6 +268,25 @@ public class Mesh {
         return mWeight;
     }
 
+
+    // ========== Setters ==========
+
+    /**
+     * Copies all of the mappings from the specified map to this map (optional operation).
+     * The effect of this call is equivalent to that of calling put(k, v) on this map once for each mapping
+     * from key k to value v in the specified map.
+     * The behavior of this operation is undefined if the specified map is modified while the operation is in progress.
+     *
+     * @param pOptionalAttributes mappings to be stored in this map
+     */
+    public void putOptionalAttributes(Map<String, String> pOptionalAttributes) {
+        this.mOptionalAttributes.putAll(pOptionalAttributes);
+    }
+
+    public void setMaterial(Material pMaterial) {
+        this.mMaterial = pMaterial;
+    }
+
     public void setDrawingStrategy(MeshDrawingStrategy pDrawingStrategy) {
         mDrawingStrategy = pDrawingStrategy;
     }
@@ -275,4 +294,5 @@ public class Mesh {
     public void setTextCoords(float[] pTextCoord) {
         mTextCoords = pTextCoord;
     }
+
 }

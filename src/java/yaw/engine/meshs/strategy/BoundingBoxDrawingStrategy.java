@@ -1,13 +1,17 @@
 package yaw.engine.meshs.strategy;
 
-import yaw.engine.meshs.MeshDrawingStrategy;
 import yaw.engine.meshs.Mesh;
+import yaw.engine.meshs.MeshDrawingStrategy;
 
 import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.opengl.GL32.GL_PROGRAM_POINT_SIZE;
 
 
 public class BoundingBoxDrawingStrategy implements MeshDrawingStrategy {
+
+
+    // ========== Methods ==========
+
 
     @Override
     public void drawMesh(Mesh pMesh) {

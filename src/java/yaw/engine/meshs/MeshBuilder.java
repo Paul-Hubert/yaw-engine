@@ -1,7 +1,7 @@
 package yaw.engine.meshs;
 
-import yaw.engine.meshs.strategy.BoundingBoxDrawingStrategy;
 import org.joml.Vector3f;
+import yaw.engine.meshs.strategy.BoundingBoxDrawingStrategy;
 import yaw.engine.meshs.strategy.DefaultDrawingStrategy;
 
 import java.util.HashMap;
@@ -11,15 +11,24 @@ import java.util.Map;
  * Generic Mesh generator, can create specific mesh just with a map (goal)
  */
 public class MeshBuilder {
+
+
+    // ========== Attributes ==========
+
+
     private static final String BLOCK_MESH = "block";
     private static final String GROUND_MESH = "ground";
     private static final String HALF_BLOCK_MESH = "half-block";
     private static final String PYRAMID_MESH = "pyramid";
     private static final String OCTAHEDRON_MESH = "octahedron";
     private static final String TETRAHEDRON_MESH = "tetrahedron";
-    //
+
 
     //TODO remove the text coord array, only use it for test
+
+
+    // ========== Methods ==========
+
 
     /**
      * Generate a mesh with the specified material (cx, cy, cz, reflectance), width, length and height
@@ -165,22 +174,6 @@ public class MeshBuilder {
         lMesh.putOptionalAttributes(lOptionalAttributes);
         return lMesh;
 
-    }
-
-    /**
-     * Create a map and store each axis individually (3D position)
-     *
-     * @param xLength width
-     * @param yLength length
-     * @param zLength height
-     * @return the map
-     */
-    public static Map<String, String> getPositionAttributesMap(float xLength, float yLength, float zLength) {
-        Map<String, String> lOptionalAttributes = new HashMap<>();
-        lOptionalAttributes.put("xLength", String.valueOf(xLength));
-        lOptionalAttributes.put("yLength", String.valueOf(yLength));
-        lOptionalAttributes.put("zLength", String.valueOf(zLength));
-        return lOptionalAttributes;
     }
 
     /**
@@ -488,4 +481,21 @@ public class MeshBuilder {
         lMesh.putOptionalAttributes(lOptionalAttributes);
         return lMesh;
     }
+
+    /**
+     * Create a map and store each axis individually (3D position)
+     *
+     * @param xLength width
+     * @param yLength length
+     * @param zLength height
+     * @return the map
+     */
+    public static Map<String, String> getPositionAttributesMap(float xLength, float yLength, float zLength) {
+        Map<String, String> lOptionalAttributes = new HashMap<>();
+        lOptionalAttributes.put("xLength", String.valueOf(xLength));
+        lOptionalAttributes.put("yLength", String.valueOf(yLength));
+        lOptionalAttributes.put("zLength", String.valueOf(zLength));
+        return lOptionalAttributes;
+    }
+
 }

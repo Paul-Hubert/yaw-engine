@@ -1,7 +1,7 @@
 package yaw.engine.camera;
 
-import yaw.engine.World;
 import org.joml.Vector3f;
+import yaw.engine.World;
 
 import java.util.Collections;
 
@@ -9,6 +9,11 @@ import java.util.Collections;
  * This class allows to manage the cameras of our world.
  */
 public class CameraManagement {
+
+
+    // ========== Methods ==========
+
+
     /**
      * Creates a camera
      * Adds the camera created in the camera listings of our World.

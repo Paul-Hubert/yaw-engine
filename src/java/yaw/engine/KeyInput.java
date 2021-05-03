@@ -12,13 +12,25 @@ import static org.lwjgl.glfw.GLFW.*;
  */
 public class KeyInput extends GLFWKeyCallback {
 
+
+    // ========== Attributes ==========
+
+
     private Map<Integer, String> trackedKeys;
     private Set<String> keyDowns;
     private InputCallback inputCallback;
 
+
+    // ========== Constructors ==========
+
+
     public KeyInput() {
         this.inputCallback = null;
     }
+
+
+    // ========== Methods ==========
+
 
     /**
      * Allows to return the key corresponding to the event to be stored (event keyboard)
@@ -35,7 +47,7 @@ public class KeyInput extends GLFWKeyCallback {
     }
 
     public synchronized void registerInputCallback(InputCallback inputCallback) {
-        if(this.inputCallback != null) {
+        if (this.inputCallback != null) {
             throw new Error("Input callback already registered");
         }
         this.inputCallback = inputCallback;
@@ -57,7 +69,7 @@ public class KeyInput extends GLFWKeyCallback {
     public void invoke(long window, int key, int scancode, int action, int mods) {
         if (key == GLFW_KEY_ESCAPE && action == GLFW_RELEASE)
             glfwSetWindowShouldClose(window, true); /* Allows to say that the window must be closed. */
-        if(inputCallback!=null) {
+        if (inputCallback != null) {
             inputCallback.sendKey(key, scancode, action, mods);
         }
     }

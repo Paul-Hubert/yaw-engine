@@ -1,12 +1,15 @@
 package yaw.engine.meshs.strategy;
 
-import yaw.engine.meshs.MeshDrawingStrategy;
 import yaw.engine.meshs.Mesh;
+import yaw.engine.meshs.MeshDrawingStrategy;
 
 import static org.lwjgl.opengl.GL11.*;
 
 
 public class DefaultDrawingStrategy implements MeshDrawingStrategy {
+
+
+    // ========== Methods ==========
 
 
     @Override
